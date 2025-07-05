@@ -1,1 +1,37 @@
 // Placeholder for dashboard.html
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>👤 Dashboard | Techlystb Exchange</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <h1>🎉 Welcome, <span id="username">User</span></h1>
+
+  <div class="card">
+    <p>💰 Coins: <b><span id="coin-count">0</span></b></p>
+    <p>🎁 Bonus Available: <span id="bonus-status">Yes</span></p>
+    <button onclick="claimBonus()">Claim Bonus</button>
+  </div>
+
+  <div class="card">
+    <h2>👨‍👩‍👧 Referral</h2>
+    <p>Your Code: <code id="ref-code">loading...</code></p>
+    <p>Total Referrals: <span id="ref-count">0</span></p>
+  </div>
+
+  <div class="card">
+    <h2>🏧 Withdraw</h2>
+    <button onclick="openWithdraw()">Request Withdraw</button>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js"></script>
+  <script src="../src/firebase-config.js"></script>
+  <script src="../src/dashboard.js"></script>
+</body>
+</html>
