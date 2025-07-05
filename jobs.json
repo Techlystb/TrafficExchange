@@ -1,0 +1,14 @@
+[
+  {
+    "id": "job1",
+    "title": "Visit Techlystb Homepage",
+    "url": "https://techlystb.blogspot.com",
+    "reward": 5
+  },
+  {
+    "id": "job2",
+    "title": "Visit GitHub Project",
+    "url": "https://github.com/Techlystb",
+    "reward": 4
+  }
+]
