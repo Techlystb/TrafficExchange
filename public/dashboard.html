@@ -1,37 +1,33 @@
-// Placeholder for dashboard.html
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>👤 Dashboard | Techlystb Exchange</title>
-  <link rel="stylesheet" href="../assets/styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-  <h1>🎉 Welcome, <span id="username">User</span></h1>
+  <h1>🎉 স্বাগতম!</h1>
+  <p>🪙 আপনার কয়েন: <span id="coin-count">0</span></p>
+  <p>📋 সম্পন্ন কাজ: <span id="job-count">0</span></p>
+  <p>📤 উত্তোলনের অনুরোধ: <span id="withdraw-count">0</span></p>
 
-  <div class="card">
-    <p>💰 Coins: <b><span id="coin-count">0</span></b></p>
-    <p>🎁 Bonus Available: <span id="bonus-status">Yes</span></p>
-    <button onclick="claimBonus()">Claim Bonus</button>
-  </div>
+  <div id="job-list"></div>
+  <button onclick="location.href='withdraw.html'">🧾 Withdraw Now</button>
 
-  <div class="card">
-    <h2>👨‍👩‍👧 Referral</h2>
-    <p>Your Code: <code id="ref-code">loading...</code></p>
-    <p>Total Referrals: <span id="ref-count">0</span></p>
-  </div>
+  <div id="footer"></div>
 
-  <div class="card">
-    <h2>🏧 Withdraw</h2>
-    <button onclick="openWithdraw()">Request Withdraw</button>
-  </div>
-
-  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js"></script>
   <script src="../src/firebase-config.js"></script>
   <script src="../src/dashboard.js"></script>
+  <script src="../src/jobs.js"></script>
+
+  <script>
+    fetch("footer.html")
+      .then(res => res.text())
+      .then(html => document.getElementById("footer").innerHTML = html);
+  </script>
 </body>
 </html>
