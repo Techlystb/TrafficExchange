@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <h1>🎉 স্বাগতম!</h1>
+  <p>🪙 আপনার কয়েন: <span id="coin-count">0</span></p>
+  <p>📋 সম্পন্ন কাজ: <span id="job-count">0</span></p>
+  <p>📤 উত্তোলনের অনুরোধ: <span id="withdraw-count">0</span></p>
+
+  <div id="job-list"></div>
+  <button onclick="location.href='withdraw.html'">🧾 Withdraw Now</button>
+
+  <div id="footer"></div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js"></script>
+  <script src="../src/firebase-config.js"></script>
+  <script src="../src/dashboard.js"></script>
+  <script src="../src/jobs.js"></script>
+
+  <script>
+    fetch("footer.html")
+      .then(res => res.text())
+      .then(html => document.getElementById("footer").innerHTML = html);
+  </script>
+</body>
+</html>
