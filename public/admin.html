@@ -1,1 +1,30 @@
 // Placeholder for admin.html
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>👨‍💼 Admin Panel | Techlystb Exchange</title>
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <h1>🛠️ Admin Dashboard</h1>
+
+  <div class="card">
+    <h2>📝 Pending Withdraw Requests</h2>
+    <ul id="withdraw-list"></ul>
+  </div>
+
+  <div class="card">
+    <h2>👥 All Users Info</h2>
+    <ul id="user-list"></ul>
+  </div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js"></script>
+  <script src="../src/firebase-config.js"></script>
+  <script src="../src/admin.js"></script>
+</body>
+</html>
