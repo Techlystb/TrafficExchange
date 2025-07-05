@@ -1,0 +1,42 @@
+body {
+  background: #121212;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+h1, h3 {
+  margin: 10px 0;
+}
+
+button {
+  background: #4caf50;
+  color: #fff;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+  margin-top: 10px;
+}
+button:hover {
+  background: #43a047;
+}
+
+.card, .job-card {
+  background: #1e1e1e;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 15px auto;
+  max-width: 400px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+footer {
+  margin-top: 40px;
+  font-size: 14px;
+  color: #ccc;
+}
