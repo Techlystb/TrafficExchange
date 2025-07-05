@@ -1,0 +1,33 @@
+.shadow-box {
+  background-color: var(--bg, #fff);
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin: 1rem auto;
+  max-width: 500px;
+  transition: all 0.3s ease;
+}
+.shadow-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+.shadow-box h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--text, #222);
+}
+.shadow-box p {
+  margin-bottom: 1rem;
+  color: var(--text, #444);
+}
+.shadow-box a {
+  background: #4caf50;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+.shadow-box a:hover {
+  background: #43a047;
+}
