@@ -1,37 +1,53 @@
-// Placeholder for login.html
 <!DOCTYPE html>
 <html lang="bn">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🔐 লগইন / রেজিস্টার</title>
-  <link rel="stylesheet" href="../assets/styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login | TrafficExchange</title>
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-  <h1>🔐 Login / Register</h1>
 
-  <div class="card">
-    <input class="input" type="email" id="email" placeholder="📧 Gmail / Email" />
-    <input class="input" type="password" id="password" placeholder="🔑 ৬ ডিজিট পাসওয়ার্ড" maxlength="6" />
-    
-    <button onclick="login()">🔓 Login</button>
-    <button onclick="register()">🆕 Register</button>
-
-    <p id="msg" style="margin-top: 10px; color: #f44336;"></p>
+  <div class="container">
+    <h1>লগইন করুন</h1>
+    <form id="login-form">
+      <input type="email" id="email" placeholder="ইমেইল" required />
+      <input type="password" id="password" placeholder="পাসওয়ার্ড" required />
+      <button class="btn" type="submit">লগইন</button>
+    </form>
+    <p>নতুন একাউন্ট? <a href="register.html">রেজিস্টার করুন</a></p>
   </div>
 
-  <!-- Firebase -->
+  <!-- Firebase JS SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js"></script>
-  <script src="../src/firebase-config.js"></script>
-  <script src="../src/login.js"></script>
+
+  <!-- Config & Login Logic -->
+  <script src="src/firebase-config.js"></script>
+  <script>
+    const auth = firebase.auth();
+
+    document.getElementById("login-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+          location.href = "dashboard.html"; // ✅ Login success redirect
+        })
+        .catch(error => {
+          alert("❌ Login Failed: " + error.message);
+        });
+    });
+  </script>
+  
 <!-- Firebase CDN -->
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
 <script src="src/firebase-config.js"></script>
 <script src="src/login.js"></script>
 
-
 </body>
 </html>
+
