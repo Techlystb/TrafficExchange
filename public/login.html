@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🔐 লগইন / রেজিস্টার</title>
-  <link rel="stylesheet" href="assets/styles.css" />
+  <meta charset="UTF-8">
+  <title>Login/Register</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 20px; }
+    .card { max-width: 400px; margin: auto; background: #f4f4f4; padding: 20px; border-radius: 10px; }
+    input, button { width: 90%; margin: 10px; padding: 10px; border-radius: 5px; }
+    #msg { margin-top: 15px; font-weight: bold; }
+  </style>
 </head>
 <body>
-  <h1>🔐 Login / Register</h1>
 
+  <h2>🔐 Login / Register</h2>
   <div class="card">
-    <input class="input" type="email" id="email" placeholder="📧 Gmail / Email" />
-    <input class="input" type="password" id="password" placeholder="🔑 ৬ ডিজিট পাসওয়ার্ড" maxlength="6" />
-    
-    <button id="login-btn">🔓 Login</button>
-    <button id="register-btn">🆕 Register</button>
-
-    <p id="msg" style="margin-top: 10px; color: #f44336;"></p>
+    <input type="email" id="email" placeholder="📧 Email" />
+    <input type="password" id="password" placeholder="🔑 6 Digit Password" maxlength="6" />
+    <button id="login-btn">Login</button>
+    <button id="register-btn">Register</button>
+    <p id="msg"></p>
   </div>
 
-  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
 
-  <!-- Firebase Config -->
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyB7qpEGqaVjQh-hyniCCbHh6Ut_fkInED4",
@@ -35,51 +36,55 @@
     };
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
-  </script>
 
-  <!-- Login/Register Logic -->
-  <script>
     const msg = document.getElementById("msg");
-
-    document.getElementById("login-btn").addEventListener("click", () => {
+    document.getElementById("login-btn").onclick = () => {
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value.trim();
 
       if (!/^\d{6}$/.test(password)) {
-        msg.innerText = "❌ ৬ সংখ্যার ডিজিট পাসওয়ার্ড দিন";
+        msg.innerText = "❌ পাসওয়ার্ড ৬ সংখ্যার হতে হবে!";
+        msg.style.color = "red";
         return;
       }
 
       auth.signInWithEmailAndPassword(email, password)
         .then(() => {
+          msg.innerText = "✅ লগইন সফল!";
           msg.style.color = "green";
-          msg.innerText = "✅ লগইন সফল! রিডাইরেক্ট হচ্ছে...";
-          setTimeout(() => location.href = "dashboard.html", 1200);
+          setTimeout(() => {
+            location.href = "dashboard.html";
+          }, 1500);
         })
-        .catch((error) => {
-          msg.innerText = "❌ লগইন ব্যর্থ: " + error.message;
+        .catch(e => {
+          msg.innerText = "❌ " + e.message;
+          msg.style.color = "red";
         });
-    });
+    };
 
-    document.getElementById("register-btn").addEventListener("click", () => {
+    document.getElementById("register-btn").onclick = () => {
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value.trim();
 
       if (!/^\d{6}$/.test(password)) {
-        msg.innerText = "❌ ৬ সংখ্যার ডিজিট পাসওয়ার্ড দিন";
+        msg.innerText = "❌ পাসওয়ার্ড ৬ সংখ্যার হতে হবে!";
+        msg.style.color = "red";
         return;
       }
 
       auth.createUserWithEmailAndPassword(email, password)
         .then(() => {
+          msg.innerText = "✅ রেজিস্ট্রেশন সফল!";
           msg.style.color = "green";
-          msg.innerText = "✅ একাউন্ট তৈরি হয়েছে! রিডাইরেক্ট হচ্ছে...";
-          setTimeout(() => location.href = "dashboard.html", 1200);
+          setTimeout(() => {
+            location.href = "dashboard.html";
+          }, 1500);
         })
-        .catch((error) => {
-          msg.innerText = "❌ রেজিস্ট্রেশন ব্যর্থ: " + error.message;
+        .catch(e => {
+          msg.innerText = "❌ " + e.message;
+          msg.style.color = "red";
         });
-    });
+    };
   </script>
 </body>
 </html>
