@@ -1,22 +1,53 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>রেজিস্টার</title>
-  <link rel="stylesheet" href="assets/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>রেজিস্টার | TrafficExchange</title>
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-  <h2>📝 রেজিস্টার করুন</h2>
-  <input type="email" id="email" placeholder="📧 Email"><br>
-  <input type="password" id="password" placeholder="🔑 Password"><br>
-  <button onclick="register()">Register</button>
-  <p>👉 আগেই একাউন্ট করেছেন? <a href="login.html">Login করুন</a></p>
 
+  <div class="container">
+    <h1>নতুন একাউন্ট তৈরি করুন</h1>
+    <form id="register-form">
+      <input type="email" id="email" placeholder="ইমেইল" required />
+      <input type="password" id="password" placeholder="৬ ডিজিট পাসওয়ার্ড" pattern="\d{6}" required />
+      <button class="btn" type="submit">রেজিস্টার</button>
+    </form>
+    <p>একাউন্ট আছে? <a href="login.html">লগইন করুন</a></p>
+  </div>
+
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js"></script>
-  <script src="../src/firebase-config.js"></script>
-  <script src="../src/login.js"></script>
+
+  <!-- Config -->
+  <script src="src/firebase-config.js"></script>
+
+  <script>
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    document.getElementById("register-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      if (!/^\d{6}$/.test(password)) {
+        alert("পাসওয়ার্ড অবশ্যই ৬ ডিজিট হতে হবে।");
+        return;
+      }
+
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(() => {
+          alert("✅ রেজিস্ট্রেশন সফল!");
+          location.href = "dashboard.html";
+        })
+        .catch(error => {
+          alert("❌ রেজিস্ট্রেশন ব্যর্থ: " + error.message);
+        });
+    });
+  </script>
 </body>
 </html>
