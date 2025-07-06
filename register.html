@@ -11,19 +11,18 @@
   <div class="container">
     <h1>নতুন একাউন্ট খুলুন</h1>
     <form id="register-form">
-      <input type="email" id="email" placeholder="ইমেইল লিখুন" required />
+      <input type="email" id="email" placeholder="ইমেইল" required />
       <input type="password" id="password" placeholder="৬ ডিজিট পাসওয়ার্ড" pattern="\d{6}" required />
       <button class="btn" type="submit">রেজিস্টার</button>
     </form>
-    <p>আপনার একাউন্ট আছে? <a href="login.html">লগইন করুন</a></p>
-    <p id="status" style="margin-top: 15px;"></p>
+    <p id="msg" style="margin-top: 15px;"></p>
   </div>
 
   <!-- ✅ Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
 
-  <!-- ✅ Firebase Config (আপনার config নিচে বসান বা firebase-config.js আলাদা ফাইল থাকলে সেইটা যুক্ত করুন) -->
+  <!-- ✅ Inline Firebase Config -->
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyB7qpEGqaVjQh-hyniCCbHh6Ut_fkInED4",
@@ -34,15 +33,14 @@
       appId: "1:69178339515:web:c3c5759f6fad673696f99e",
       measurementId: "G-EW6RECN845"
     };
-
     firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
   </script>
 
   <!-- ✅ Register Logic -->
   <script>
-    const auth = firebase.auth();
     const form = document.getElementById("register-form");
-    const status = document.getElementById("status");
+    const msg = document.getElementById("msg");
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -51,22 +49,22 @@
       const password = document.getElementById("password").value.trim();
 
       if (!/^\d{6}$/.test(password)) {
-        status.innerText = "❌ পাসওয়ার্ড ৬ সংখ্যার ডিজিট হতে হবে!";
-        status.style.color = "red";
+        msg.innerText = "❌ পাসওয়ার্ড অবশ্যই ৬ সংখ্যার হতে হবে।";
+        msg.style.color = "red";
         return;
       }
 
       auth.createUserWithEmailAndPassword(email, password)
         .then(() => {
-          status.innerText = "✅ রেজিস্ট্রেশন সফল! লগইন হচ্ছে...";
-          status.style.color = "green";
+          msg.innerText = "✅ রেজিস্ট্রেশন সফল! রিডাইরেক্ট হচ্ছে...";
+          msg.style.color = "green";
           setTimeout(() => {
             location.href = "dashboard.html";
           }, 1500);
         })
-        .catch((error) => {
-          status.innerText = "❌ রেজিস্ট্রেশন ব্যর্থ: " + error.message;
-          status.style.color = "red";
+        .catch(error => {
+          msg.innerText = "❌ " + error.message;
+          msg.style.color = "red";
         });
     });
   </script>
